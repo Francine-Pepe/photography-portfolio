@@ -1,0 +1,160 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 3rem 5rem;
+  background: rgba(25, 23, 20, 0.96);
+  animation: fadeIn 250ms ease;
+}
+
+.content {
+  width: 100%;
+  max-width: 1100px;
+  max-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  height: min(72vh, 800px);
+}
+
+.image {
+  object-fit: contain;
+}
+
+.caption {
+  width: 100%;
+  padding-top: 1.25rem;
+  color: var(--color-paper);
+  text-align: center;
+
+  h2 {
+    margin: 0;
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0.5rem 0;
+    color: rgba(245, 240, 232, 0.7);
+    font-size: 0.8rem;
+    line-height: 1.7;
+  }
+
+  span {
+    display: block;
+    margin-top: 0.75rem;
+    color: rgba(245, 240, 232, 0.5);
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+}
+
+.closeButton,
+.navigationButton {
+  position: absolute;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  color: var(--color-paper);
+  cursor: pointer;
+  transition: opacity 200ms ease;
+
+  &:hover {
+    opacity: 0.65;
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--color-paper);
+    outline-offset: 4px;
+  }
+}
+
+.closeButton {
+  top: 1.5rem;
+  right: 2rem;
+  font-size: 2.5rem;
+  font-weight: 200;
+}
+
+.navigationButton {
+  top: 50%;
+  width: 3rem;
+  height: 3rem;
+  font-size: 1.8rem;
+  transform: translateY(-50%);
+}
+
+.previous {
+  left: 1rem;
+}
+
+.next {
+  right: 1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .overlay {
+    padding: 4rem 1rem 2rem;
+  }
+
+  .imageWrapper {
+    height: 65vh;
+  }
+
+  .closeButton {
+    top: 0.75rem;
+    right: 1rem;
+  }
+
+  .navigationButton {
+    top: auto;
+    bottom: 1rem;
+    transform: none;
+  }
+
+  .previous {
+    left: 1.5rem;
+  }
+
+  .next {
+    right: 1.5rem;
+  }
+
+  .caption {
+    padding-inline: 0.5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .overlay {
+    animation: none;
+  }
+
+  .closeButton,
+  .navigationButton {
+    transition: none;
+  }
+}
