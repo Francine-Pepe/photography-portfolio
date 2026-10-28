@@ -1,0 +1,67 @@
+.card {
+  min-width: 0;
+}
+
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  overflow: hidden;
+  background-color: var(--color-dusty-rose);
+}
+
+.imageWrapper img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.featured .imageWrapper {
+  aspect-ratio: 5 / 6;
+}
+
+.card:hover .imageWrapper img {
+  transform: scale(1.015);
+}
+
+.caption {
+  padding-top: 0.75rem;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.2rem, 2vw, 1.65rem);
+  line-height: 1.3;
+  font-weight: 400;
+}
+
+.description {
+  max-width: 340px;
+  margin: 0.35rem 0 0;
+  color: var(--color-olive);
+  font-size: 0.78rem;
+  line-height: 1.8;
+}
+
+.imageButton {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  cursor: zoom-in;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 4px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .imageWrapper img {
+    transition: none;
+  }
+}
