@@ -1,0 +1,46 @@
+.frame {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-color: var(--color-dusty-rose);
+}
+
+.strip {
+  display: flex;
+  width: calc(100% * var(--photo-count) * 2);
+  height: 100%;
+}
+
+.slide {
+  position: relative;
+  flex: 0 0 calc(100% / (var(--photo-count) * 2));
+  height: 100%;
+  overflow: hidden;
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (hover: hover) and (prefers-reduced-motion: no-preference) {
+  .frame:hover .strip {
+    animation: filmRoll 30s linear infinite;
+  }
+}
+
+@keyframes filmRoll {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip {
+    animation: none;
+  }
+}
