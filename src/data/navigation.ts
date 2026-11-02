@@ -5,3 +5,4 @@ export const navigation: NavigationItem[] = [
   { label: "About", href: "/about"},
   { label: "Contact", href: "/contact" },
 ];
+

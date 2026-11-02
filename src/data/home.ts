@@ -5,3 +5,4 @@ export const homeContent = {
     "Photographs of people, places, and little things that make me pause.",
   galleryLinkLabel: "Explore the photographs",
 };
+

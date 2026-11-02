@@ -1,0 +1,197 @@
+.photography {
+  width: 100%;
+  max-width: 100rem;
+  margin: 0 auto;
+  padding-top: 5rem;
+}
+
+.photography_page_description {
+  margin: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+// Introduction
+
+.introduction {
+  max-width: 56.25rem;
+  margin: 0 auto 4.5rem;
+  padding: 0 6%;
+  text-align: center;
+
+  h1 {
+    margin: 1.5rem auto;
+    font-family: var(--font-heading);
+    font-size: clamp(3.5rem, 8vw, 7rem);
+    font-weight: 400;
+    line-height: 1.05;
+  }
+}
+
+.eyebrow {
+  color: var(--color-burgundy);
+  font-size: 0.7rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.description {
+  max-width: 32.5rem;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  line-height: 1.9;
+  opacity: 0.8;
+  font-weight: 900;
+
+}
+
+// Category navigation
+
+.categories {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem 2rem;
+  padding: 1.5rem 5%;
+  margin-bottom: 2.5rem;
+  border-top: 1px solid rgb(41 37 31 / 15%);
+  border-bottom: 1px solid rgb(41 37 31 / 15%);
+}
+
+.categoryLink,
+.activeCategory {
+  position: relative;
+  padding: 0.4rem 0;
+  color: var(--color-ink);
+  font-size: 0.7rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition: color 250ms ease;
+
+  &::after {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 1px;
+    background-color: var(--color-burgundy);
+    content: “”;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 250ms ease;
+  }
+
+  &:hover {
+    color: var(--color-burgundy);
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &:focus-visible {
+    outline: 1px solid var(--color-burgundy);
+    outline-offset: 5px;
+  }
+}
+
+.activeCategory {
+  color: var(--color-burgundy);
+
+  &::after {
+    transform: scaleX(1);
+  }
+}
+
+// Photo count
+
+.photoCount {
+  padding: 0 5%;
+  margin: 0 0 2rem;
+  color: var(--color-ink);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-align: right;
+  text-transform: uppercase;
+  opacity: 0.6;
+}
+
+// Closing section
+
+.closing {
+  max-width: 700px;
+  margin: 6rem auto 7rem;
+  padding: 0 6%;
+  text-align: center;
+
+  h2 {
+    margin: 0 0 1.25rem;
+    font-family: var(--font-heading);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  p {
+    max-width: 480px;
+    margin: 0 auto;
+    font-size: 0.9rem;
+    line-height: 1.9;
+    opacity: 0.8;
+  }
+}
+
+// Responsive
+
+@media (max-width: 900px) {
+  .categories {
+    gap: 1.25rem 1.5rem;
+  }
+}
+
+@media (max-width: 700px) {
+  .photography {
+    padding-top: 3.5rem;
+  }
+
+  .introduction {
+    margin-bottom: 3.5rem;
+
+    h1 {
+      font-size: clamp(3.2rem, 11vw, 5rem);
+    }
+  }
+
+  .categories {
+    gap: 1rem 1.25rem;
+    padding: 1.25rem 6%;
+    margin-bottom: 2rem;
+  }
+
+  .categoryLink,
+  .activeCategory {
+    font-size: 0.65rem;
+  }
+
+  .photoCount {
+    margin-bottom: 1.5rem;
+  }
+
+  .closing {
+    margin: 4.5rem auto 5rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .categoryLink,
+  .activeCategory {
+    transition: none;
+
+    &::after {
+      transition: none;
+    }
+  }
+}
