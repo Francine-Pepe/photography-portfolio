@@ -5,6 +5,8 @@ import { footerContent } from "@/data/footer";
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
+  const getCopyright = () =>
+    `© ${new Date().getFullYear()} ${footerContent.copyright}`;
   return (
     <footer className={styles.footer}>
       <div className={styles.top}>
@@ -39,7 +41,7 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <span>
-          © {new Date().getFullYear()} {footerContent.copyright}
+          © {getCopyright()} {footerContent.copyright}
         </span>
 
         <span>{footerContent.credit}</span>
