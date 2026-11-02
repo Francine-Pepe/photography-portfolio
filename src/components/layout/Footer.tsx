@@ -51,7 +51,9 @@ export default function Footer() {
           © {year ?? ""} {footerContent.copyright}
         </span>
 
-        <span>{footerContent.credit}</span>
+        <Link href="https://www.francinemelopepe.de" target="_blank" rel="noopener noreferrer">
+          <span>{footerContent.credit}</span>
+        </Link>
       </div>
     </footer>
   );
