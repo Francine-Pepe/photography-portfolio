@@ -1,12 +1,19 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 import { navigation } from "@/data/navigation";
 import { footerContent } from "@/data/footer";
 import styles from "./Footer.module.scss";
 
 export default function Footer() {
-  const getCopyright = () =>
-    `© ${new Date().getFullYear()} ${footerContent.copyright}`;
+  const [year, setYear] = useState<number | null>(null);
+
+  useEffect(() => {
+    setYear(new Date().getFullYear());
+  }, []);
+
   return (
     <footer className={styles.footer}>
       <div className={styles.top}>
@@ -41,7 +48,7 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <span>
-          © {getCopyright()} {footerContent.copyright}
+          © {year ?? ""} {footerContent.copyright}
         </span>
 
         <span>{footerContent.credit}</span>
