@@ -44,7 +44,7 @@ export default function CategoryGrid({ photos }: CategoryGridProps) {
               />
 
               <div className={styles.caption}>
-                <h2>{category.label}</h2>
+                <span className={styles.category_label}>{category.label}</span>
                 <span>{String(categoryPhotos.length).padStart(2, "0")}</span>
               </div>
             </Link>

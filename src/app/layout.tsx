@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Cormorant_Garamond, DM_Sans } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.scss";
 import Header from "@/components/layout/Header";
 
@@ -15,6 +16,12 @@ const bodyFont = DM_Sans({
   weight: ["400", "500", "700"],
 });
 
+const alta = localFont({
+  src: "./fonts/Alta_Regular.woff2",
+  variable: "--font-alta",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: "Photography Portfolio",
   description:
@@ -24,7 +31,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" className={`${headingFont.variable} ${bodyFont.variable}`}>
-      <body>
+      <body className={`${alta.variable} `}>
         <Header />
         {children}
       </body>
