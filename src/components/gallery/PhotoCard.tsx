@@ -1,3 +1,4 @@
+import { useId } from "react";
 import type { Photo } from "@/types";
 import PhotoImage from "./PhotoImage";
 import styles from "./PhotoCard.module.scss";
@@ -15,26 +16,42 @@ export default function PhotoCard({
   featured = false,
   onClick,
 }: PhotoCardProps) {
+  const descriptionId = useId();
+
   const cardClassName = featured
     ? `${styles.card} ${styles.featured}`
     : styles.card;
+
+  const image = (
+    <span className={styles.imageWrapper}>
+      <PhotoImage photo={photo} />
+    </span>
+  );
+
   return (
     <article className={cardClassName}>
-      <button
-        type="button"
-        className={styles.imageButton}
-        onClick={onClick}
-        aria-label={`View ${photo.name}`}
-      >
-        <div className={styles.imageWrapper}>
-          <PhotoImage photo={photo} />
-        </div>
-      </button>
+      {onClick ? (
+        <button
+          type="button"
+          className={styles.imageButton}
+          onClick={onClick}
+          aria-label={`View ${photo.name}`}
+          aria-describedby={description ? descriptionId : undefined}
+        >
+          {image}
+        </button>
+      ) : (
+        <div className={styles.imageButton}>{image}</div>
+      )}
 
       <div className={styles.caption}>
-        <span className={styles.title}>{photo.name}</span>
+        <h3 className={styles.title}>{photo.name}</h3>
 
-        {description && <p className={styles.description}>{description}</p>}
+        {description && (
+          <p id={descriptionId} className={styles.description}>
+            {description}
+          </p>
+        )}
       </div>
     </article>
   );

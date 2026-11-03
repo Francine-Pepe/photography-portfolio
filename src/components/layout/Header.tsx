@@ -3,12 +3,14 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 import LogoImage from "../../../public/Francine_fotografie_logo.png";
 import styles from "./Header.module.scss";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const closeMenu = () => setIsMenuOpen(false);
 
@@ -27,15 +29,24 @@ function Header() {
 
       {/* Desktop navigation */}
       <nav className={styles.navigation} aria-label="Main site navigation">
-        <span>• •</span>
+        <span aria-hidden="true">• •</span>
 
-        {navigation.map((item) => (
-          <Link key={item.href} href={item.href} className={styles.link}>
-            {item.label}
-          </Link>
-        ))}
+        {navigation.map((item) => {
+          const isCurrentPage = pathname === item.href;
 
-        <span>• •</span>
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={styles.link}
+              aria-current={isCurrentPage ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
+
+        <span aria-hidden="true">• •</span>
       </nav>
 
       {/* Mobile hamburger button */}
@@ -47,9 +58,9 @@ function Header() {
         aria-expanded={isMenuOpen}
         aria-controls="mobile-navigation"
       >
-        <span className={isMenuOpen ? styles.barOpen : ""} />
-        <span className={isMenuOpen ? styles.barOpen : ""} />
-        <span className={isMenuOpen ? styles.barOpen : ""} />
+        <span className={isMenuOpen ? styles.barOpen : ""} aria-hidden="true" />
+        <span className={isMenuOpen ? styles.barOpen : ""} aria-hidden="true" />
+        <span className={isMenuOpen ? styles.barOpen : ""} aria-hidden="true" />
       </button>
 
       {/* Mobile navigation */}
@@ -61,16 +72,21 @@ function Header() {
         aria-label="Mobile site navigation"
         inert={!isMenuOpen}
       >
-        {navigation.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            className={styles.mobileLink}
-            onClick={closeMenu}
-          >
-            {item.label}
-          </Link>
-        ))}
+        {navigation.map((item) => {
+          const isCurrentPage = pathname === item.href;
+
+          return (
+            <Link
+              key={item.href}
+              href={item.href}
+              className={styles.mobileLink}
+              onClick={closeMenu}
+              aria-current={isCurrentPage ? "page" : undefined}
+            >
+              {item.label}
+            </Link>
+          );
+        })}
       </nav>
     </header>
   );

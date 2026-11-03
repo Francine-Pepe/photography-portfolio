@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import type { Photo } from "@/types";
 import styles from "./PhotoLightbox.module.scss";
@@ -21,14 +21,38 @@ export default function PhotoLightbox({
   onNavigate,
 }: PhotoLightboxProps) {
   const photo = photos[activeIndex];
+  const dialogRef = useRef<HTMLDivElement>(null);
+  const previouslyFocusedElement = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     if (!photo) return;
+
+    previouslyFocusedElement.current = document.activeElement as HTMLElement | null;
+    dialogRef.current?.focus();
 
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === "Escape") onClose();
       if (event.key === "ArrowLeft") onNavigate(-1);
       if (event.key === "ArrowRight") onNavigate(1);
+
+      if (event.key === "Tab" && dialogRef.current) {
+        const focusableControls = dialogRef.current.querySelectorAll<HTMLElement>(
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])',
+        );
+
+        if (focusableControls.length === 0) return;
+
+        const firstControl = focusableControls[0];
+        const lastControl = focusableControls[focusableControls.length - 1];
+
+        if (event.shiftKey && document.activeElement === firstControl) {
+          event.preventDefault();
+          lastControl.focus();
+        } else if (!event.shiftKey && document.activeElement === lastControl) {
+          event.preventDefault();
+          firstControl.focus();
+        }
+      }
     };
 
     document.addEventListener("keydown", handleKeyDown);
@@ -37,6 +61,7 @@ export default function PhotoLightbox({
     return () => {
       document.removeEventListener("keydown", handleKeyDown);
       document.body.style.overflow = "";
+      previouslyFocusedElement.current?.focus();
     };
   }, [photo, onClose, onNavigate]);
 
@@ -44,10 +69,12 @@ export default function PhotoLightbox({
 
   return (
     <div
+      ref={dialogRef}
       className={styles.overlay}
       role="dialog"
       aria-modal="true"
       aria-label={`Photograph: ${photo.name}`}
+      tabIndex={-1}
       onClick={onClose}
     >
       <button

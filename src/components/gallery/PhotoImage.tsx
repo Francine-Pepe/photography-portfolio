@@ -4,19 +4,23 @@ import type { Photo } from "@/types";
 type PhotoImageProps = {
   photo: Photo;
   priority?: boolean;
+  sizes?: string;
 };
 
-function PhotoImage({ photo, priority = false }: PhotoImageProps) {
+const DEFAULT_SIZES = "(max-width: 600px) 90vw, 45vw";
+
+export default function PhotoImage({
+  photo,
+  priority = false,
+  sizes = DEFAULT_SIZES,
+}: PhotoImageProps) {
   return (
     <Image
       src={photo.image}
       alt={photo.name}
-      width={1200}
-      height={900}
+      fill
+      sizes={sizes}
       priority={priority}
-      sizes="(max-width: 600px) 100vw, (max-width: 1024px) 50vw, 33vw"
     />
   );
 }
-
-export default PhotoImage;
