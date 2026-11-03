@@ -4,7 +4,7 @@ const API_URL = "https://dasilva-fotografie-api-tau.vercel.app/fotos";
 
 export async function getPhotos(): Promise<Photo[]> {
   const response = await fetch(API_URL, {
-    next: { revalidate: 3600 },
+    next: { revalidate: 300 },
   });
 
   if (!response.ok) {
