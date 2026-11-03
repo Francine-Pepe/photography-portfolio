@@ -1,18 +1,14 @@
-"use client";
-
+import { connection } from "next/server";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 import { navigation } from "@/data/navigation";
 import { footerContent } from "@/data/footer";
 import styles from "./Footer.module.scss";
 
-export default function Footer() {
-  const [year, setYear] = useState<number | null>(null);
+export default async function Footer() {
+  await connection();
 
-  useEffect(() => {
-    setYear(new Date().getFullYear());
-  }, []);
+  const copyrightYear = new Date().getFullYear();
 
   return (
     <footer className={styles.footer}>
@@ -48,12 +44,9 @@ export default function Footer() {
 
       <div className={styles.bottom}>
         <span>
-          © {year ?? ""} {footerContent.copyright}
+          © {copyrightYear} {footerContent.copyright}
         </span>
-
-        <Link href="https://www.francinemelopepe.de" target="_blank" rel="noopener noreferrer">
-          <span>{footerContent.credit}</span>
-        </Link>
+        <span>{footerContent.credit}</span>
       </div>
     </footer>
   );
