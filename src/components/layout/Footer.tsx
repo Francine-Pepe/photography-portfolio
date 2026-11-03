@@ -1,3 +1,5 @@
+import { Suspense } from "react";
+import CopyrightYear from "./CopyrightYear";
 import Image from "next/image";
 import Link from "next/link";
 import { navigation } from "@/data/navigation";
@@ -41,7 +43,11 @@ export default async function Footer() {
 
       <div className={styles.bottom}>
         <span>
-          © {copyrightYear} {footerContent.copyright}
+          ©{" "}
+          <Suspense fallback="2026">
+            <CopyrightYear />
+          </Suspense>{" "}
+          {footerContent.copyright}
         </span>
         <span>{footerContent.credit}</span>
       </div>
