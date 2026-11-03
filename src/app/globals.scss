@@ -5,8 +5,8 @@
   --color-olive: #77785b;
   --color-dusty-rose: #d9bdb5;
 
-  --font-heading: Georgia, serif;
-  --font-body: var(--font-alta);
+  --font-heading: "Cormorant-Garamond", serif;
+  --font-body: "Alta", sans-serif;
 }
 
 * {
@@ -29,8 +29,30 @@ h1,
 h2,
 h3,
 h4 {
-  font-family: var(--font-heading);
   font-weight: 400;
+  text-wrap: balance;
+}
+
+h1 {
+  font-family: var(--font-heading);
+}
+
+h2,
+h3,
+h4 {
+  font-family: "Alta", sans-serif;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 1.2rem + 1vw, 2.25rem); // 24px to 36px
+}
+
+h3 {
+  font-size: clamp(1.25rem, 1.1rem + 0.6vw, 1.65rem); // 20px to 26px
+}
+
+h4 {
+  font-size: clamp(1.05rem, 1rem + 0.3vw, 1.25rem); // 17px to 20px
 }
 
 a {
@@ -40,12 +62,25 @@ a {
   font-weight: 900;
 }
 
-p {
+button {
+  font: inherit;
+}
+
+p,
+span,
+button,
+a {
   font-family: var(--font-alta);
 }
 
-button {
-  font: inherit;
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-burgundy);
+  outline-offset: 3px;
+  border-radius: 0.25rem;
 }
 
 img {

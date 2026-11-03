@@ -1,79 +1,83 @@
 .gallery {
+  // Layout tokens: breakpoints only change these, never the rules below
+  --col-default: span 6;
+  --col-left: 2 / span 5;
+  --col-right: 7 / span 5;
+  --col-narrow: span 4;
+  --col-wide: 3 / span 8;
+  --offset: 2.5rem;
+
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
-  gap: 4.5rem 1.25rem;
+  gap: clamp(2.75rem, 6vw, 4.5rem) clamp(1rem, 2vw, 1.25rem);
   align-items: start;
-  padding: 0 5% 7rem;
+  margin: 0;
+  padding-inline: 5%;
+  padding-block: 0 7rem;
+  list-style: none;
 }
 
 .item {
-  grid-column: span 6;
+  grid-column: var(--col-default);
   min-width: 0;
 }
 
-.wide {
-  grid-column: 3 / span 8;
+.item:where(:nth-child(4n + 2)) {
+  grid-column: var(--col-left);
+}
+
+.item:where(:nth-child(4n + 3)) {
+  grid-column: var(--col-right);
 }
 
 .narrow {
-  grid-column: span 4;
+  grid-column: var(--col-narrow);
+}
+
+.wide {
+  grid-column: var(--col-wide);
 }
 
 .offset {
-  transform: translateY(2.5rem);
+  translate: 0 var(--offset);
 }
 
-.item:nth-child(4n + 2) {
-  grid-column: 2 / span 5;
-}
-
-.item:nth-child(4n + 3) {
-  grid-column: 7 / span 5;
-}
-
-.wide:nth-child(4n + 1) {
-  grid-column: 3 / span 8;
-}
-
-@media (max-width: 900px) {
+@media (width <= 900px) {
   .gallery {
-    gap: 3.5rem 1rem;
-  }
-
-  .wide {
-    grid-column: 2 / span 10;
-  }
-
-  .narrow {
-    grid-column: span 5;
-  }
-
-  .item:nth-child(4n + 2) {
-    grid-column: 1 / span 6;
-  }
-
-  .item:nth-child(4n + 3) {
-    grid-column: 7 / span 6;
+    --col-left: 1 / span 6;
+    --col-right: 7 / span 6;
+    --col-narrow: span 5;
+    --col-wide: 2 / span 10;
   }
 }
 
-@media (max-width: 600px) {
+@media (width <= 600px) {
   .gallery {
+    --col-default: 1;
+    --col-left: 1;
+    --col-right: 1;
+    --col-narrow: 1;
+    --col-wide: 1;
+    --offset: 0rem;
+
     grid-template-columns: 1fr;
-    gap: 2.75rem;
-    padding-inline: 5%;
   }
+}
 
-  .item,
-  .wide,
-  .narrow,
-  .item:nth-child(4n + 2),
-  .item:nth-child(4n + 3),
-  .wide:nth-child(4n + 1) {
-    grid-column: 1;
+// Scroll-driven reveal: no JS or IntersectionObserver.
+@media (prefers-reduced-motion: no-preference) {
+  @supports (animation-timeline: view()) {
+    .item {
+      animation: reveal linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 35%;
+    }
   }
+}
 
-  .offset {
-    transform: none;
+@keyframes reveal {
+  from {
+    opacity: 0;
+    transform: translateY(1.5rem);
   }
 }

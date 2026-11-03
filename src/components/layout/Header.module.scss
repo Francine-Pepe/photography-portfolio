@@ -38,6 +38,10 @@
   text-transform: uppercase;
   transition: color 200ms ease;
 
+  &[aria-current="page"] {
+    color: var(--color-burgundy);
+  }
+
   &::after {
     position: absolute;
     right: 0;
@@ -78,6 +82,12 @@
   background: transparent;
   cursor: pointer;
   z-index: 20;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-burgundy);
+    outline-offset: 0.25rem;
+    border-radius: 0.25rem;
+  }
 
   span {
     display: block;
@@ -159,10 +169,15 @@
     transform: translateY(0);
   }
 
-  .mobileLink {
+    .mobileLink {
     text-decoration: none;
     font-size: 1.1rem;
     color: #012022;
+
+    &[aria-current="page"] {
+      text-decoration: underline;
+      text-underline-offset: 0.2rem;
+    }
 
     &:hover {
       opacity: 0.6;

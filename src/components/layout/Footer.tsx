@@ -1,12 +1,16 @@
+"use client";
+
 import { Suspense } from "react";
-import CopyrightYear from "./CopyrightYear";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { navigation } from "@/data/navigation";
 import { footerContent } from "@/data/footer";
+import CopyrightYear from "./CopyrightYear";
 import styles from "./Footer.module.scss";
 
-export default async function Footer() {
+export default function Footer() {
+  const pathname = usePathname();
 
   return (
     <footer className={styles.footer}>
@@ -23,11 +27,19 @@ export default async function Footer() {
         <p className={styles.tagline}>{footerContent.tagline}</p>
 
         <nav className={styles.navigation} aria-label="Footer navigation">
-          {navigation.map((item) => (
-            <Link key={item.href} href={item.href}>
-              {item.label}
-            </Link>
-          ))}
+          {navigation.map((item) => {
+            const isCurrentPage = pathname === item.href;
+
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                aria-current={isCurrentPage ? "page" : undefined}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <Link
