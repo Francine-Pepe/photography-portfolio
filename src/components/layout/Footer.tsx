@@ -7,7 +7,6 @@ import { footerContent } from "@/data/footer";
 import styles from "./Footer.module.scss";
 
 export default async function Footer() {
-  const copyrightYear = new Date().getFullYear();
 
   return (
     <footer className={styles.footer}>
