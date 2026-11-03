@@ -85,7 +85,7 @@ export default function PhotoLightbox({
         </div>
 
         <div className={styles.caption}>
-          <h2>{photo.name}</h2>
+          <span>{photo.name}</span>
 
           {description && <p>{description}</p>}
 

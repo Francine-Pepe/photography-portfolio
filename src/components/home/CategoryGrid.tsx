@@ -14,9 +14,9 @@ export default function CategoryGrid({ photos }: CategoryGridProps) {
     <section className={styles.section} aria-label="Photography categories">
       <div className={styles.grid}>
         {categories.map((category) => {
-          const categoryPhotos = photos.filter(
-            (photo) => photo.type.toLowerCase() === category.slug,
-          );
+          const categoryPhotos = photos
+          .filter((photo) => photo.type.toLowerCase() === category.slug)
+          .sort((a, b) => b.id - a.id);
 
           const coverPhoto =
             categoryPhotos.find(
