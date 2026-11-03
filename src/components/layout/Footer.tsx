@@ -1,4 +1,3 @@
-import { connection } from "next/server";
 import Image from "next/image";
 import Link from "next/link";
 import { navigation } from "@/data/navigation";
@@ -6,8 +5,6 @@ import { footerContent } from "@/data/footer";
 import styles from "./Footer.module.scss";
 
 export default async function Footer() {
-  await connection();
-
   const copyrightYear = new Date().getFullYear();
 
   return (
