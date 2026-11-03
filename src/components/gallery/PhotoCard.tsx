@@ -32,7 +32,7 @@ export default function PhotoCard({
       </button>
 
       <div className={styles.caption}>
-        <h2 className={styles.title}>{photo.name}</h2>
+        <span className={styles.title}>{photo.name}</span>
 
         {description && <p className={styles.description}>{description}</p>}
       </div>

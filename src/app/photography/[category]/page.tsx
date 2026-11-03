@@ -48,7 +48,7 @@ async function CategoryContent({ params }: CategoryPageProps) {
 
   const categoryPhotos = photos
     .filter((photo) => photo.type.toLowerCase() === slug)
-    .sort((a, b) => a.id - b.id);
+    .sort((a, b) => b.id - a.id);
 
   if (categoryPhotos.length === 0) {
     notFound();

@@ -30,5 +30,5 @@ export async function getPhotos(): Promise<Photo[]> {
     throw new Error("The photos API returned an unexpected response.");
   }
 
-  return photos as Photo[];
+  return (photos as Photo[]).sort((a, b) => b.id - a.id);
 }
