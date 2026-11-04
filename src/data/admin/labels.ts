@@ -32,6 +32,12 @@ export const ADMIN_LABELS = {
     back: "Back to galleries",
     detailsDescription: "Manage this client's private photo gallery.",
     information: "Gallery information",
+    photoSection: "Upload photos",
+    uploadedPhotos: "Uploaded photos",
+    noPhotos: "No photos uploaded yet.",
+    photosLoadError: "Unable to load photos.",
+    photoLoadError: "Unable to load this photo.",
+    download: "Download",
   },
 
   galleryForm: {
