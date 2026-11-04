@@ -28,6 +28,10 @@ export default async function ClientGalleryPage({ params }: Props) {
         <p>Your private photo gallery</p>
       </header>
 
+      <section className="client-gallery__download-all">
+        <a href={`/download/${token}/zip`}>Download all photos</a>
+      </section>
+
       <section className="client-gallery__photos">
         {gallery.photos.length === 0 ? (
           <p>No photos available yet.</p>
@@ -49,10 +53,6 @@ export default async function ClientGalleryPage({ params }: Props) {
 
                     <div className="client-gallery__photo-info">
                       <span>{photo.fileName}</span>
-
-                      <a href={photo.signedUrl} download={photo.fileName}>
-                        Download
-                      </a>
                     </div>
                   </>
                 ) : (
