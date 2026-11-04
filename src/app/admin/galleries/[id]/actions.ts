@@ -2,6 +2,7 @@
 
 import { randomUUID } from "node:crypto";
 import { createClient } from "@/lib/supabase/server";
+import { revalidatePath } from "next/cache";
 
 const BUCKET = "client-galleries";
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
@@ -137,4 +138,47 @@ export async function savePhotoRecord(
   }
 
   return { success: true };
+}
+
+export async function toggleGalleryStatus(galleryId: string) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user || user.app_metadata?.role !== "admin") {
+    return { error: "Unauthorized access." };
+  }
+
+  const { data: gallery, error: fetchError } = await supabase
+    .from("galleries")
+    .select("id, is_active")
+    .eq("id", galleryId)
+    .single();
+
+  if (fetchError || !gallery) {
+    return { error: "Gallery not found." };
+  }
+
+  const newStatus = !gallery.is_active;
+
+  const { error: updateError } = await supabase
+    .from("galleries")
+    .update({ is_active: newStatus })
+    .eq("id", galleryId);
+
+  if (updateError) {
+    console.error("Gallery status update error:", updateError);
+    return { error: "Unable to update gallery status." };
+  }
+
+  revalidatePath(`/admin/galleries/${galleryId}`);
+  revalidatePath("/admin/galleries");
+
+  return {
+    success: true,
+    isActive: newStatus,
+  };
 }
