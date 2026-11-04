@@ -1,0 +1,81 @@
+.photo-uploader {
+  margin-top: 2rem;
+
+  &__dropzone {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 15rem;
+    padding: 2rem;
+    border: 2px dashed #c9c1b9;
+    text-align: center;
+    background: #faf9f7;
+    transition: background 0.2s ease;
+
+    &.is-dragging {
+      background: #e9f4f1;
+      border-color: #267c74;
+    }
+
+    h3 {
+      margin-bottom: 0.75rem;
+    }
+
+    p {
+      margin-bottom: 0.5rem;
+    }
+
+    span {
+      display: block;
+      color: #777;
+      font-size: 0.8rem;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.75rem 1.5rem;
+      border: 0;
+      background: #012022;
+      color: white;
+      cursor: pointer;
+
+      &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  &__files {
+    margin-top: 2rem;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+  }
+
+  &__file {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #e8e2dc;
+    font-size: 0.9rem;
+  }
+
+  &__status {
+    font-size: 0.85rem;
+
+    &--success {
+      color: #267344;
+    }
+
+    &--error {
+      color: #bd4545;
+    }
+
+    &--uploading {
+      color: #996016;
+    }
+  }
+}

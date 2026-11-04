@@ -1,0 +1,73 @@
+.gallery-create,
+.gallery-list {
+  padding: 2rem;
+  margin-bottom: 2rem;
+  background: white;
+  border: 1px solid #e8e2dc;
+
+  h2 {
+    margin-bottom: 1.5rem;
+    font-family: Georgia, serif;
+    font-size: 1.4rem;
+  }
+}
+
+.gallery-list {
+  &__table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+
+    th,
+    td {
+      padding: 1rem;
+      border-bottom: 1px solid #eee8e2;
+      white-space: nowrap;
+    }
+
+    th {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: #777;
+      text-transform: uppercase;
+    }
+
+    td {
+      font-size: 0.95rem;
+    }
+  }
+}
+
+.gallery-status {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 2rem;
+  font-size: 0.8rem;
+
+  &--active {
+    background: #e3f3e9;
+    color: #267344;
+  }
+
+  &--expired {
+    background: #fff0dc;
+    color: #996016;
+  }
+
+  &--inactive {
+    background: #eee;
+    color: #666;
+  }
+}
+
+@media (max-width: 48rem) {
+  .gallery-create,
+  .gallery-list {
+    padding: 1.25rem;
+  }
+}

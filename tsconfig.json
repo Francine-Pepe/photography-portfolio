@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts",
     "**/*.mts"
-  ],
+,     "src/styles/dashboard.scss", "src/styles/sidebar.scss"  ],
   "exclude": ["node_modules"]
 }

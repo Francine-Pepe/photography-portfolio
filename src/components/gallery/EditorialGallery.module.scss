@@ -20,6 +20,7 @@
 .item {
   grid-column: var(--col-default);
   min-width: 0;
+  border-radius: 0.5rem;
 }
 
 .item:where(:nth-child(4n + 2)) {
