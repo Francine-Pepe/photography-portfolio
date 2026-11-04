@@ -1,0 +1,40 @@
+.admin-sidebar {
+  width: 16rem;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  background: #012022;
+  color: #f3e5e4;
+
+  &__brand {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-bottom: 3rem;
+
+    span {
+      font-family: Georgia, serif;
+      font-size: 1.6rem;
+    }
+
+    small {
+      opacity: 0.65;
+    }
+  }
+
+  nav {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      padding: 0.75rem;
+      border-radius: 0.375rem;
+
+      &:hover {
+        background: rgb(255 255 255 / 10%);
+      }
+    }
+  }
+}
