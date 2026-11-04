@@ -6,7 +6,7 @@ import { createClient } from "@/lib/supabase/client";
 
 export default function AdminLogin() {
   const router = useRouter();
-  const supabase = createClient();
+  /* const supabase = createClient(); */
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -15,23 +15,34 @@ export default function AdminLogin() {
 
   async function handleLogin(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-
     setError("");
     setLoading(true);
 
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password,
-    });
+    try {
+      const supabase = createClient();
 
-    if (error) {
-      setError("Invalid email or password.");
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+
+        password,
+      });
+
+      if (error) {
+        setError("Invalid email or password.");
+
+        return;
+      }
+
+      router.replace("/admin/dashboard");
+
+      router.refresh();
+    } catch (err) {
+      console.error("Login error:", err);
+
+      setError("Unable to connect. Please try again.");
+    } finally {
       setLoading(false);
-      return;
     }
-
-    router.replace("/admin/dashboard");
-    router.refresh();
   }
 
   return (
