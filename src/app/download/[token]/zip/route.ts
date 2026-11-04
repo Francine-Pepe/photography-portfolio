@@ -1,6 +1,5 @@
 import { createHash } from "node:crypto";
-import { Readable, PassThrough } from "node:stream";
-import * as archiver from "archiver";
+import JSZip from "jszip";
 
 import { createAdminClient } from "@/lib/supabase/admin";
 import { PHOTO_UPLOAD_CONFIG } from "@/data/admin/photo-upload";
@@ -14,114 +13,89 @@ type Props = {
 export async function GET(_request: Request, { params }: Props) {
   const { token } = await params;
 
-  // Validate token format
   if (!/^[A-Za-z0-9_-]{43}$/.test(token)) {
     return new Response("Gallery not found.", { status: 404 });
   }
 
   const tokenHash = createHash("sha256").update(token).digest("hex");
-
   const supabase = createAdminClient();
 
-  // Find gallery
-  const { data: gallery, error: galleryError } = await supabase
+  // Validate gallery
+  const { data: gallery, error } = await supabase
     .from("galleries")
     .select("id, client_name, expires_at, is_active")
     .eq("access_token_hash", tokenHash)
     .maybeSingle();
 
   if (
-    galleryError ||
+    error ||
     !gallery ||
     !gallery.is_active ||
-    (gallery.expires_at && new Date(gallery.expires_at).getTime() <= Date.now())
+    (gallery.expires_at && new Date(gallery.expires_at) <= new Date())
   ) {
     return new Response("Gallery not found or expired.", {
       status: 404,
     });
   }
 
-  // Get gallery photos
+  // Get photos
   const { data: photos, error: photosError } = await supabase
     .from("gallery_photos")
     .select("file_name, storage_path")
     .eq("gallery_id", gallery.id);
 
-  if (photosError) {
-    console.error("ZIP photo lookup error:", photosError);
-
-    return new Response("Unable to retrieve gallery photos.", {
-      status: 500,
-    });
-  }
-
-  if (!photos || photos.length === 0) {
+  if (photosError || !photos?.length) {
     return new Response("No photos available.", { status: 404 });
   }
 
-  const archive = archiver("zip", {
-    zlib: { level: 5 },
-  });
-
-  const output = new PassThrough();
-
-  archive.on("warning", (error) => {
-    console.warn("ZIP warning:", error);
-  });
-
-  archive.on("error", (error) => {
-    console.error("ZIP creation error:", error);
-    output.destroy(error);
-  });
-
-  archive.pipe(output);
-
   try {
+    const zip = new JSZip();
+
     for (const photo of photos) {
       const { data, error } = await supabase.storage
         .from(PHOTO_UPLOAD_CONFIG.bucket)
         .createSignedUrl(photo.storage_path, 3600);
 
       if (error || !data?.signedUrl) {
-        throw new Error(`Unable to access photo: ${photo.file_name}`);
+        throw new Error(`Unable to access ${photo.file_name}`);
       }
 
       const response = await fetch(data.signedUrl);
 
-      if (!response.ok || !response.body) {
-        throw new Error(`Unable to download photo: ${photo.file_name}`);
+      if (!response.ok) {
+        throw new Error(`Unable to download ${photo.file_name}`);
       }
 
-      const stream = Readable.fromWeb(response.body as never);
+      const file = await response.arrayBuffer();
 
-      archive.append(stream, {
-        name: photo.file_name.replace(/[\\/]/g, "_"),
-      });
+      zip.file(photo.file_name, file);
     }
 
-    await archive.finalize();
+    const zipBuffer = await zip.generateAsync({
+      type: "uint8array",
+      compression: "DEFLATE",
+      compressionOptions: { level: 5 },
+    });
+
+    const zipBlob = new Blob([zipBuffer.buffer as ArrayBuffer], {
+      type: "application/zip",
+    });
+
+    const safeName =
+      gallery.client_name.replace(/[^a-zA-Z0-9-_ ]/g, "").trim() || "gallery";
+
+    return new Response(zipBlob, {
+      headers: {
+        "Content-Type": "application/zip",
+        "Content-Disposition": `attachment; filename="${safeName}-photos.zip"`,
+        "Cache-Control": "private, no-store",
+      },
+    });
   } catch (error) {
     console.error("ZIP download error:", error);
-    archive.destroy(error as Error);
 
     return new Response("Unable to create ZIP file.", {
       status: 500,
     });
   }
-
-  const safeName =
-    gallery.client_name
-      .replace(/[^a-zA-Z0-9-_ ]/g, "")
-      .trim()
-      .replace(/\s+/g, "-") || "gallery";
-
-  const filename = `${safeName}-photos.zip`;
-
-  return new Response(Readable.toWeb(output) as ReadableStream, {
-    headers: {
-      "Content-Type": "application/zip",
-      "Content-Disposition": `attachment; filename="${filename}"`,
-      "Cache-Control": "private, no-store",
-    },
-  });
 }
