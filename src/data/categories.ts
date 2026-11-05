@@ -2,13 +2,8 @@ import type { Category } from "@/types";
 
 export const categories: Category[] = [
   {
-    label: "Animals",
-    slug: "animals",
-    layout: "featured",
-  },
-  {
-    label: "Flowers",
-    slug: "flowers",
+    label: "Portrait",
+    slug: "portrait",
     layout: "standard",
   },
   {
@@ -22,16 +17,6 @@ export const categories: Category[] = [
     layout: "featured",
   },
   {
-    label: "Moon",
-    slug: "moon",
-    layout: "standard",
-  },
-  {
-    label: "Portrait",
-    slug: "portrait",
-    layout: "standard",
-  },
-  {
     label: "Product",
     slug: "product",
     layout: "featured",
@@ -39,6 +24,21 @@ export const categories: Category[] = [
   {
     label: "Event",
     slug: "event",
+    layout: "standard",
+  },
+  {
+    label: "Animals",
+    slug: "animals",
+    layout: "featured",
+  },
+  {
+    label: "Flowers",
+    slug: "flowers",
+    layout: "standard",
+  },
+  {
+    label: "Moon",
+    slug: "moon",
     layout: "standard",
   },
 ];

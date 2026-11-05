@@ -5,7 +5,7 @@ export const ADMIN_LABELS = {
   navigation: {
     logout: "Log out",
     brand: "Da Silva",
-    subtitle: "Photography Admin",
+    subtitle: "Fotografie Admin",
   },
 
   dashboard: {

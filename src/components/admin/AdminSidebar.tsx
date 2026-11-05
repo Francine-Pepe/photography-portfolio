@@ -4,6 +4,8 @@ import { ADMIN_NAVIGATION } from "@/data/admin/navigation";
 import { ADMIN_LABELS } from "@/data/admin/labels";
 
 export default function AdminSidebar() {
+  console.log("AdminSidebar rendered");
+
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar__brand">

@@ -65,6 +65,20 @@
   }
 }
 
+.galleries-back {
+  display: inline-block;
+  margin-bottom: 0.5rem;
+  color: #267c74;
+  font-size: 0.85rem;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #012022;
+    text-decoration: underline;
+  }
+}
+
 @media (max-width: 48rem) {
   .gallery-create,
   .gallery-list {

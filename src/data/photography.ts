@@ -6,14 +6,15 @@ export const photographyContent = {
 
   categories: [
     { label: "All", slug: "all" },
-    { label: "Animals", slug: "animals" },
-    { label: "Flowers", slug: "flowers" },
+    { label: "Portrait", slug: "portrait" },
     { label: "Food", slug: "food" },
     { label: "Landscape", slug: "landscape" },
-    { label: "Moon", slug: "moon" },
-    { label: "Portrait", slug: "portrait" },
     { label: "Product", slug: "product" },
     { label: "Event", slug: "event" },
+    { label: "Animals", slug: "animals" },
+    { label: "Flowers", slug: "flowers" },
+
+    { label: "Moon", slug: "moon" },
   ],
 
   closing: {
