@@ -14,6 +14,7 @@ import { GALLERY_CONFIG } from "@/data/admin/gallery";
 import { PHOTO_UPLOAD_CONFIG } from "@/data/admin/photo-upload";
 import GalleryLinkManager from "@/components/admin/GalleryLinkManager";
 import GalleryStatusButton from "@/components/admin/GalleryStatusButton";
+import DeleteGalleryButton from "@/components/admin/DeleteGalleryButton";
 
 import "@/styles/admin/gallery-details.scss";
 
@@ -103,6 +104,8 @@ export default async function GalleryDetailsPage({ params }: Props) {
                   galleryId={id}
                   isActive={gallery.is_active}
                 />
+
+                <DeleteGalleryButton galleryId={id} />
               </div>
             </div>
 

@@ -112,7 +112,9 @@ export default async function GalleriesPage() {
             )}
           </section>
 
-          <Link href="/admin/dashboard">Back to dashboard</Link>
+          <Link href="/admin/dashboard" className="galleries-back">
+            ← Back to dashboard
+          </Link>
         </main>
       </div>
     </div>

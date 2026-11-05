@@ -3,6 +3,7 @@
 import { randomUUID } from "node:crypto";
 import { createClient } from "@/lib/supabase/server";
 import { revalidatePath } from "next/cache";
+import { PHOTO_UPLOAD_CONFIG } from "@/data/admin/photo-upload";
 
 const BUCKET = "client-galleries";
 const MAX_FILE_SIZE = 50 * 1024 * 1024;
@@ -181,4 +182,57 @@ export async function toggleGalleryStatus(galleryId: string) {
     success: true,
     isActive: newStatus,
   };
+}
+
+export async function deleteGallery(galleryId: string) {
+  const supabase = await createClient();
+
+  const {
+    data: { user },
+    error: authError,
+  } = await supabase.auth.getUser();
+
+  if (authError || !user || user.app_metadata?.role !== "admin") {
+    return { error: "Unauthorized access." };
+  }
+
+  // Get all photos belonging to this gallery
+  const { data: photos, error: photosError } = await supabase
+    .from("gallery_photos")
+    .select("storage_path")
+    .eq("gallery_id", galleryId);
+
+  if (photosError) {
+    console.error("Gallery photos lookup error:", photosError);
+    return { error: "Unable to retrieve gallery photos." };
+  }
+
+  // Remove photos from Supabase Storage
+  if (photos && photos.length > 0) {
+    const paths = photos.map((photo) => photo.storage_path);
+
+    const { error: storageError } = await supabase.storage
+      .from(PHOTO_UPLOAD_CONFIG.bucket)
+      .remove(paths);
+
+    if (storageError) {
+      console.error("Photo deletion error:", storageError);
+      return { error: "Unable to delete gallery photos." };
+    }
+  }
+
+  // Delete gallery (photo records are removed through ON DELETE CASCADE)
+  const { error: deleteError } = await supabase
+    .from("galleries")
+    .delete()
+    .eq("id", galleryId);
+
+  if (deleteError) {
+    console.error("Gallery deletion error:", deleteError);
+    return { error: "Unable to delete gallery." };
+  }
+
+  revalidatePath("/admin/galleries");
+
+  return { success: true };
 }

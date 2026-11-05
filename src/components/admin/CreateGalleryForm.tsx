@@ -6,6 +6,7 @@ import {
   type GalleryState,
 } from "@/app/admin/galleries/actions";
 import { ADMIN_LABELS } from "@/data/admin/labels";
+import "@/styles/admin/gallery-form.scss";
 
 const initialState: GalleryState = {};
 
