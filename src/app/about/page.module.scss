@@ -7,7 +7,7 @@
   grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 6rem;
-  max-width: 1300px;
+  max-width: 81.25rem;
   margin: 0 auto;
 }
 
@@ -23,32 +23,31 @@
 }
 
 .content {
-  max-width: 500px;
+  max-width: 31.25rem;
 
   h1 {
     margin: 0 0 2rem;
-    font-family: var(--font-heading);
     font-size: clamp(3rem, 5vw, 5.5rem);
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     line-height: 1.05;
   }
 
   p {
-    font-size: 1rem;
+    font-size: var(--font-size-base);
     line-height: 1.9;
-    font-weight: 700;
+    font-weight: var(--font-weight-bold);
   }
 }
 
 .eyebrow {
   margin-bottom: 1.5rem;
   color: var(--color-burgundy);
-  font-size: 0.75rem;
+  font-size: var(--font-size-sm);
   letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .about {
     padding: 3rem 6%;
   }

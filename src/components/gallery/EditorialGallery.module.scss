@@ -43,7 +43,7 @@
   translate: 0 var(--offset);
 }
 
-@media (width <= 900px) {
+@media (width <= 56.25rem) {
   .gallery {
     --col-left: 1 / span 6;
     --col-right: 7 / span 6;
@@ -52,7 +52,7 @@
   }
 }
 
-@media (width <= 600px) {
+@media (width <= 37.5rem) {
   .gallery {
     --col-default: 1;
     --col-left: 1;

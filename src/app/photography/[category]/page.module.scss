@@ -5,7 +5,7 @@
 .eyebrow {
   margin: 0 0 1.25rem;
   color: var(--color-burgundy);
-  font-size: 0.65rem;
+  font-size: var(--font-size-xxs);
   letter-spacing: 0.16em;
   text-transform: uppercase;
 }
@@ -15,25 +15,25 @@
   font-size: clamp(3rem, 7vw, 5.5rem);
   line-height: 1;
   letter-spacing: -0.035em;
-  font-weight: 400;
+  font-weight: var(--font-weight-regular);
 }
 
 .description {
-  max-width: 380px;
+  max-width: 23.75rem;
   margin: 1.25rem 0 1rem;
-  font-size: 0.85rem;
+  font-size: var(--font-size-lg);
   line-height: 1.9;
 }
 
 .count {
   margin: 0;
   color: var(--color-olive);
-  font-size: 0.65rem;
+  font-size: var(--font-size-xxs);
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   .introduction {
     padding-inline: 6%;
   }

@@ -1,14 +1,14 @@
+@use "../mixins" as mixins;
+
 .gallery-create,
 .gallery-list {
   padding: 2rem;
   margin-bottom: 2rem;
-  background: white;
-  border: 1px solid #e8e2dc;
+  @include mixins.surface();
 
   h2 {
     margin-bottom: 1.5rem;
-    font-family: Georgia, serif;
-    font-size: 1.4rem;
+    font-size: var(--font-size-heading-md);
   }
 }
 
@@ -26,19 +26,19 @@
     th,
     td {
       padding: 1rem;
-      border-bottom: 1px solid #eee8e2;
+      border-bottom: 0.0625rem solid var(--color-border-subtle);
       white-space: nowrap;
     }
 
     th {
-      font-size: 0.8rem;
-      font-weight: 600;
-      color: #777;
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-muted);
       text-transform: uppercase;
     }
 
     td {
-      font-size: 0.95rem;
+      font-size: var(--font-size-2xl);
     }
   }
 }
@@ -47,34 +47,34 @@
   display: inline-block;
   padding: 0.35rem 0.75rem;
   border-radius: 2rem;
-  font-size: 0.8rem;
+  font-size: var(--font-size-md);
 
   &--active {
-    background: #e3f3e9;
-    color: #267344;
+    background: var(--color-success-background);
+    color: var(--color-success);
   }
 
   &--expired {
-    background: #fff0dc;
-    color: #996016;
+    background: var(--color-warning-background);
+    color: var(--color-warning);
   }
 
   &--inactive {
-    background: #eee;
-    color: #666;
+    background: var(--color-neutral-light);
+    color: var(--color-neutral-medium);
   }
 }
 
 .galleries-back {
   display: inline-block;
   margin-bottom: 0.5rem;
-  color: #267c74;
-  font-size: 0.85rem;
+  color: var(--color-admin-accent-strong);
+  font-size: var(--font-size-lg);
   text-decoration: none;
   transition: color 0.2s ease;
 
   &:hover {
-    color: #012022;
+    color: var(--color-admin-ink);
     text-decoration: underline;
   }
 }

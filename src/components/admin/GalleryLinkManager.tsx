@@ -40,7 +40,7 @@ export default function GalleryLinkManager({ galleryId }: Props) {
   return (
     <div className="gallery-link">
       <div className="gallery-link__header">
-        <h3>Private gallery link</h3>
+        <h3 className="font-heading">Private gallery link</h3>
         <button type="button" onClick={handleGenerate} disabled={isPending}>
           {isPending ? "Generating..." : "Generate new link"}
         </button>

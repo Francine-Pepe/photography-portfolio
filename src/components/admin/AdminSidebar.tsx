@@ -9,7 +9,7 @@ export default function AdminSidebar() {
   return (
     <aside className="admin-sidebar">
       <div className="admin-sidebar__brand">
-        <span>{ADMIN_LABELS.navigation.brand}</span>
+        <span className="font-heading">{ADMIN_LABELS.navigation.brand}</span>
         <small>{ADMIN_LABELS.navigation.subtitle}</small>
       </div>
 

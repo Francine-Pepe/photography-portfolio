@@ -5,5 +5,6 @@ export const footerContent = {
     label: "Instagram",
     url: "https://www.instagram.com/fran.e.a.canon.do.pai/",
   },
+  creditLink: "https://www.francinemelopepe.de",
   credit: "Photography & design by Francine M. da Silva Pêpe",
 };

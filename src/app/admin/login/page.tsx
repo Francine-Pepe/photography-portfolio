@@ -46,7 +46,7 @@ export default function AdminLogin() {
     <main className="admin-login">
       <div className="admin-login__card">
         <div className="admin-login__brand">
-          <span>Da Silva Fotografie</span>
+          <span className="font-heading">Da Silva Fotografie</span>
           <div className="admin-login__divider" />
         </div>
 

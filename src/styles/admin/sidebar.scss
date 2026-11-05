@@ -1,18 +1,17 @@
+@use "../mixins" as mixins;
+
 .admin-sidebar {
   width: 16rem;
   min-height: 100vh;
   padding: 2rem 1.5rem;
-  background: #012022;
-  color: #f3e5e4;
+  background: var(--color-admin-ink);
+  color: var(--color-admin-sidebar-text);
 
   &__brand {
-    display: flex;
-    flex-direction: column;
-    gap: 0.4rem;
+    @include mixins.flex-container($direction: column, $gap: 0.4rem);
     margin-bottom: 3rem;
 
     span {
-      font-family: Georgia, serif;
       font-size: 1.6rem;
     }
 
@@ -22,9 +21,7 @@
   }
 
   nav {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @include mixins.flex-container($direction: column, $gap: 1rem);
 
     a {
       color: inherit;
@@ -33,7 +30,7 @@
       border-radius: 0.375rem;
 
       &:hover {
-        background: rgb(255 255 255 / 10%);
+        background: var(--color-white-10);
       }
     }
   }

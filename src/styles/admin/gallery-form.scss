@@ -1,38 +1,38 @@
+@use "../mixins" as mixins;
+
 .gallery-form {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1.5rem;
 
   &__field {
-    display: flex;
-    flex-direction: column;
-    gap: 0.6rem;
+    @include mixins.flex-container($direction: column, $gap: 0.6rem);
 
     label {
-      color: #012022;
-      font-size: 0.85rem;
-      font-weight: 600;
+      color: var(--color-admin-ink);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
     }
 
     input {
       width: 100%;
       min-width: 0;
       padding: 0.9rem 1rem;
-      border: 1px solid #deded8;
+      border: 0.0625rem solid var(--color-border-input);
       border-radius: 0;
       outline: none;
-      background: #fff;
-      color: #012022;
+      background: var(--color-white);
+      color: var(--color-admin-ink);
       font: inherit;
-      font-size: 0.9rem;
+      font-size: var(--font-size-xl);
       transition: border-color 0.2s ease;
 
       &::placeholder {
-        color: #aaa;
+        color: var(--color-neutral-placeholder);
       }
 
       &:focus {
-        border-color: #49bfb3;
+        border-color: var(--color-admin-accent);
       }
     }
   }
@@ -41,18 +41,18 @@
     grid-column: 1 / -1;
     justify-self: start;
     padding: 0.9rem 2rem;
-    border: 1px solid #49bfb3;
-    background: #49bfb3;
-    color: #012022;
-    font-size: 0.85rem;
-    font-weight: 600;
+    border: 0.0625rem solid var(--color-admin-accent);
+    background: var(--color-admin-accent);
+    color: var(--color-admin-ink);
+    font-size: var(--font-size-lg);
+    font-weight: var(--font-weight-semibold);
     cursor: pointer;
     transition: all 0.25s ease;
 
     &:hover:not(:disabled) {
-      border-color: #012022;
-      background: #012022;
-      color: #fff;
+      border-color: var(--color-admin-ink);
+      background: var(--color-admin-ink);
+      color: var(--color-white);
     }
 
     &:disabled {
@@ -65,57 +65,55 @@
     grid-column: 1 / -1;
     margin: 0;
     padding: 0.85rem 1rem;
-    border-left: 3px solid #ec585a;
-    background: #f3e5e4;
-    color: #a52e30;
-    font-size: 0.85rem;
+    border-left: 0.1875rem solid var(--color-error-accent);
+    background: var(--color-error-background);
+    color: var(--color-error-dark);
+    font-size: var(--font-size-lg);
   }
 
   &__success {
     grid-column: 1 / -1;
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem;
+    @include mixins.flex-container($direction: column, $gap: 0.75rem);
     padding: 1.25rem;
-    border: 1px solid #49bfb3;
-    background: #f0f9f7;
+    border: 0.0625rem solid var(--color-admin-accent);
+    background: var(--color-admin-success-surface);
 
     p {
       margin: 0 0 0.5rem;
-      color: #267344;
-      font-weight: 600;
+      color: var(--color-success);
+      font-weight: var(--font-weight-semibold);
     }
 
     label {
-      color: #012022;
-      font-size: 0.85rem;
-      font-weight: 600;
+      color: var(--color-admin-ink);
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
     }
 
     input {
       width: 100%;
       min-width: 0;
       padding: 0.85rem;
-      border: 1px solid #d4e5df;
-      background: #fff;
-      color: #012022;
+      border: 0.0625rem solid var(--color-admin-success-border);
+      background: var(--color-white);
+      color: var(--color-admin-ink);
       font: inherit;
-      font-size: 0.85rem;
+      font-size: var(--font-size-lg);
     }
 
     button {
-      align-self: flex-start;
+      @include mixins.flex-align-self(flex-start);
       padding: 0.65rem 1.25rem;
-      border: 1px solid #012022;
-      background: #012022;
-      color: #fff;
-      font-size: 0.8rem;
+      border: 0.0625rem solid var(--color-admin-ink);
+      background: var(--color-admin-ink);
+      color: var(--color-white);
+      font-size: var(--font-size-md);
       cursor: pointer;
       transition: background 0.2s ease;
 
       &:hover {
-        background: #267c74;
-        border-color: #267c74;
+        background: var(--color-admin-accent-strong);
+        border-color: var(--color-admin-accent-strong);
       }
     }
   }
