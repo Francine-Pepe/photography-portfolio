@@ -1,49 +1,77 @@
 .client-gallery {
   min-height: 100vh;
-  padding: 4rem 5%;
+  padding: 5rem 5%;
   background: #f8f6f1;
   color: #25231f;
 
   &__header {
+    max-width: 50rem;
+    margin: 0 auto 5rem;
     text-align: center;
-    margin-bottom: 4rem;
 
     > span {
-      font-size: 0.8rem;
-      letter-spacing: 0.15em;
+      display: inline-block;
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
+      color: #8a8277;
     }
 
     h1 {
-      margin: 1.5rem 0 0.5rem;
-      font-size: clamp(2rem, 5vw, 3.5rem);
+      margin: 1.5rem 0 0.75rem;
+      font-family: Georgia, serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
       font-weight: 400;
+      line-height: 1.15;
     }
 
     p {
-      color: #777;
+      margin: 0;
+      color: #8a8277;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      width: 3rem;
+      height: 1px;
+      margin: 2rem auto 0;
+      background: #c9bca9;
     }
   }
 
   &__photos {
-    max-width: 90rem;
+    max-width: 100rem;
     margin: 0 auto;
   }
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 1.5rem;
+    gap: 2.5rem 1.5rem;
   }
 
   &__item {
     min-width: 0;
 
+    > a {
+      display: block;
+      overflow: hidden;
+      background: #eee9e0;
+    }
+
     img {
       display: block;
       width: 100%;
-      height: 22rem;
+      height: 24rem;
       object-fit: cover;
+      transition: transform 0.5s ease;
+    }
+
+    > a:hover img {
+      transform: scale(1.025);
     }
   }
 
@@ -52,67 +80,108 @@
     justify-content: space-between;
     align-items: center;
     gap: 1rem;
-    padding: 0.75rem 0;
+    padding: 0.85rem 0 0;
 
     span {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      font-size: 0.85rem;
+      color: #777067;
+      font-size: 0.8rem;
     }
 
     a {
       flex-shrink: 0;
-      color: inherit;
-      font-size: 0.85rem;
-      text-decoration: underline;
+      color: #5c655c;
+      font-size: 0.8rem;
+      text-decoration: none;
+      border-bottom: 1px solid #b9b9a9;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: #a16e50;
+      }
+    }
+  }
+
+  &__download-all {
+    display: flex;
+    justify-content: center;
+    margin: 0 auto 4rem;
+
+    a {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      border: 1px solid #b9ad9c;
+      color: #49443d;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: all 0.25s ease;
+
+      &:hover {
+        background: #252f2b;
+        border-color: #252f2b;
+        color: #fff;
+      }
     }
   }
 
   &__footer {
-    margin-top: 5rem;
+    margin-top: 6rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e4dfd6;
     text-align: center;
-    font-size: 0.8rem;
-    color: #777;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+    color: #999185;
   }
 }
 
-.client-gallery__download-all {
-  display: flex;
-  justify-content: center;
-  margin: 2rem 0 3rem;
+@media (max-width: 60rem) {
+  .client-gallery {
+    &__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 2rem 1.25rem;
+    }
 
-  a {
-    display: inline-block;
-    padding: 0.85rem 1.75rem;
-    background: #012022;
-    color: #fff;
-    text-decoration: none;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: #267c74;
+    &__item img {
+      height: 22rem;
     }
   }
 }
 
-@media (max-width: 900px) {
-  .client-gallery__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+@media (max-width: 40rem) {
+  .client-gallery {
+    padding: 3.5rem 5%;
+
+    &__header {
+      margin-bottom: 3rem;
+    }
+
+    &__grid {
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+
+    &__item img {
+      height: auto;
+      aspect-ratio: 4 / 3;
+    }
+
+    &__download-all {
+      margin-bottom: 3rem;
+    }
+
+    &__footer {
+      margin-top: 4rem;
+    }
   }
 }
 
-@media (max-width: 550px) {
-  .client-gallery {
-    padding: 3rem 5%;
-  }
-
-  .client-gallery__grid {
-    grid-template-columns: 1fr;
-  }
-
+@media (prefers-reduced-motion: reduce) {
   .client-gallery__item img {
-    height: auto;
-    aspect-ratio: 4 / 3;
+    transition: none;
   }
 }

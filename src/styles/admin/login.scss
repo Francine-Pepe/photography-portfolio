@@ -1,0 +1,153 @@
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 5%;
+  background: #012022;
+  color: #012022;
+
+  &__card {
+    width: 100%;
+    max-width: 28rem;
+    padding: 3.5rem;
+    background: #fff;
+  }
+
+  &__brand {
+    text-align: center;
+
+    span {
+      font-family: Georgia, serif;
+      font-size: 1.1rem;
+      letter-spacing: 0.08em;
+    }
+  }
+
+  &__divider {
+    width: 2.5rem;
+    height: 2px;
+    margin: 1.5rem auto 3rem;
+    background: #49bfb3;
+  }
+
+  &__heading {
+    margin-bottom: 2.5rem;
+
+    > span {
+      color: #ec585a;
+      font-size: 0.75rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0.75rem 0;
+      font-family: Georgia, serif;
+      font-size: 2.3rem;
+      font-weight: 400;
+    }
+
+    p {
+      margin: 0;
+      color: #777;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+  }
+
+  &__field {
+    margin-bottom: 1.5rem;
+
+    label {
+      display: block;
+      margin-bottom: 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid #deded8;
+      border-radius: 0;
+      outline: none;
+      background: #faf9f7;
+      color: #012022;
+      font: inherit;
+      font-size: 0.9rem;
+      transition:
+        border-color 0.2s ease,
+        background 0.2s ease;
+
+      &::placeholder {
+        color: #aaa;
+      }
+
+      &:focus {
+        border-color: #49bfb3;
+        background: #fff;
+      }
+    }
+  }
+
+  &__error {
+    margin: 0 0 1.25rem;
+    padding: 0.8rem 1rem;
+    background: #f3e5e5;
+    border-left: 3px solid #ec585a;
+    color: #a52e30;
+    font-size: 0.85rem;
+  }
+
+  form > button {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #49bfb3;
+    background: #49bfb3;
+    color: #012022;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.25s ease;
+
+    &:hover:not(:disabled) {
+      border-color: #012022;
+      background: #012022;
+      color: #fff;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+
+  &__footer {
+    margin-top: 2.5rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #eee9e3;
+    text-align: center;
+
+    span {
+      color: #999;
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+  }
+}
+
+@media (max-width: 35rem) {
+  .admin-login {
+    padding: 1.5rem;
+
+    &__card {
+      padding: 2.5rem 1.5rem;
+    }
+
+    &__heading h1 {
+      font-size: 2rem;
+    }
+  }
+}
