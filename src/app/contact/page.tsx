@@ -14,7 +14,7 @@ export default function ContactPage() {
 
       <section className={styles.details}>
         <div className={styles.message}>
-          <h2>{contactContent.message.title}</h2>
+          <h2 className="font-heading">{contactContent.message.title}</h2>
 
           <p>{contactContent.message.closingText}</p>
 
@@ -31,7 +31,10 @@ export default function ContactPage() {
               {contactContent.contactDetails.email.label}
             </span>
 
-            <a href={`mailto:${contactContent.contactDetails.email.address}`}>
+            <a
+              className="font-heading"
+              href={`mailto:${contactContent.contactDetails.email.address}`}
+            >
               {contactContent.contactDetails.email.address}
             </a>
           </div>
@@ -42,6 +45,7 @@ export default function ContactPage() {
             </span>
 
             <Link
+              className="font-heading"
               href={contactContent.contactDetails.instagram.url}
               target="_blank"
               rel="noopener noreferrer"
@@ -52,7 +56,7 @@ export default function ContactPage() {
         </div>
       </section>
 
-      <p className={styles.signature}>{contactContent.signature}</p>
+      <p className={`${styles.signature} font-heading`}>{contactContent.signature}</p>
     </main>
   );
 }

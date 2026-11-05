@@ -24,7 +24,7 @@ export default function Footer() {
           />
         </Link>
 
-        <p className={styles.tagline}>{footerContent.tagline}</p>
+        <p className={`${styles.tagline} font-heading`}>{footerContent.tagline}</p>
 
         <nav className={styles.navigation} aria-label="Footer navigation">
           {navigation.map((item) => {
@@ -60,7 +60,9 @@ export default function Footer() {
           </Suspense>{" "}
           {footerContent.copyright}
         </span>
-        <span>{footerContent.credit}</span>
+        <Link href={footerContent.creditLink} target="_blank" rel="noopener noreferrer">
+          <span>{footerContent.credit}</span>
+        </Link>
       </div>
     </footer>
   );

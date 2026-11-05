@@ -39,12 +39,12 @@ export default async function GalleriesPage() {
           </div>
 
           <section className="gallery-create">
-            <h2>Create a new gallery</h2>
+            <h2 className="font-heading">Create a new gallery</h2>
             <CreateGalleryForm />
           </section>
 
           <section className="gallery-list">
-            <h2>All galleries</h2>
+            <h2 className="font-heading">All galleries</h2>
 
             {error ? (
               <p>Unable to load galleries.</p>

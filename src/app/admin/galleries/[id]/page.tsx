@@ -91,7 +91,7 @@ export default async function GalleryDetailsPage({ params }: Props) {
 
           <section className="gallery-details">
             <div className="gallery-details__header">
-              <h2>{labels.information}</h2>
+              <h2 className="font-heading">{labels.information}</h2>
 
               <div className="gallery-details__actions">
                 <span
@@ -147,7 +147,7 @@ export default async function GalleryDetailsPage({ params }: Props) {
           </section>
 
           <section className="gallery-details__photos">
-            <h2>{labels.photoSection}</h2>
+            <h2 className="font-heading">{labels.photoSection}</h2>
 
             <PhotoUploader galleryId={id} />
           </section>

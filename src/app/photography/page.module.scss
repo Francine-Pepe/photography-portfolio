@@ -1,3 +1,5 @@
+@use "../../styles/mixins" as mixins;
+
 .photography {
   width: 100%;
   max-width: 100rem;
@@ -7,9 +9,7 @@
 
 .photography_page_description {
   margin: 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include mixins.flex-container($direction: column, $align: center);
   text-align: center;
 }
 
@@ -23,16 +23,15 @@
 
   h1 {
     margin: 1.5rem auto;
-    font-family: var(--font-heading);
     font-size: clamp(3.5rem, 8vw, 7rem);
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     line-height: 1.05;
   }
 }
 
 .eyebrow {
   color: var(--color-burgundy);
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -40,25 +39,21 @@
 .description {
   max-width: 32.5rem;
   margin: 0 auto;
-  font-size: 0.95rem;
+  font-size: var(--font-size-2xl);
   line-height: 1.9;
   opacity: 0.8;
-  font-weight: 900;
+  font-weight: var(--font-weight-black);
 
 }
 
 // Category navigation
 
 .categories {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 1.5rem 2rem;
+  @include mixins.flex-container($align: center, $justify: center, $wrap: wrap, $gap: 1.5rem 2rem);
   padding: 1.5rem 5%;
   margin-bottom: 2.5rem;
-  border-top: 1px solid rgb(41 37 31 / 15%);
-  border-bottom: 1px solid rgb(41 37 31 / 15%);
+  border-top: 0.0625rem solid var(--color-ink-15);
+  border-bottom: 0.0625rem solid var(--color-ink-15);
 }
 
 .categoryLink,
@@ -66,7 +61,7 @@
   position: relative;
   padding: 0.4rem 0;
   color: var(--color-ink);
-  font-size: 0.7rem;
+  font-size: var(--font-size-xs);
   letter-spacing: 0.12em;
   text-transform: uppercase;
   transition: color 250ms ease;
@@ -76,7 +71,7 @@
     right: 0;
     bottom: 0;
     left: 0;
-    height: 1px;
+    height: 0.0625rem;
     background-color: var(--color-burgundy);
     content: “”;
     transform: scaleX(0);
@@ -93,8 +88,7 @@
   }
 
   &:focus-visible {
-    outline: 1px solid var(--color-burgundy);
-    outline-offset: 5px;
+    @include mixins.focus-ring(0.0625rem, 0.3125rem);
   }
 }
 
@@ -112,7 +106,7 @@
   padding: 0 5%;
   margin: 0 0 2rem;
   color: var(--color-ink);
-  font-size: 0.68rem;
+  font-size: var(--font-size-label);
   letter-spacing: 0.14em;
   text-align: right;
   text-transform: uppercase;
@@ -122,23 +116,22 @@
 // Closing section
 
 .closing {
-  max-width: 700px;
+  max-width: 43.75rem;
   margin: 6rem auto 7rem;
   padding: 0 6%;
   text-align: center;
 
   h2 {
     margin: 0 0 1.25rem;
-    font-family: var(--font-heading);
     font-size: clamp(2.5rem, 5vw, 4rem);
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
     line-height: 1.1;
   }
 
   p {
-    max-width: 480px;
+    max-width: 30rem;
     margin: 0 auto;
-    font-size: 0.9rem;
+    font-size: var(--font-size-xl);
     line-height: 1.9;
     opacity: 0.8;
   }
@@ -146,13 +139,13 @@
 
 // Responsive
 
-@media (max-width: 900px) {
+@media (max-width: 56.25rem) {
   .categories {
-    gap: 1.25rem 1.5rem;
+    @include mixins.flex-gap(1.25rem 1.5rem);
   }
 }
 
-@media (max-width: 700px) {
+@media (max-width: 43.75rem) {
   .photography {
     padding-top: 3.5rem;
   }
@@ -166,14 +159,14 @@
   }
 
   .categories {
-    gap: 1rem 1.25rem;
+    @include mixins.flex-gap(1rem 1.25rem);
     padding: 1.25rem 6%;
     margin-bottom: 2rem;
   }
 
   .categoryLink,
   .activeCategory {
-    font-size: 0.65rem;
+    font-size: var(--font-size-xxs);
   }
 
   .photoCount {

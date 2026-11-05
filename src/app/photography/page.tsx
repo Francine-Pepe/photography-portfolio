@@ -38,7 +38,7 @@ export default async function PhotographyPage() {
       <p className={styles.photoCount}>{photos.length} photographs</p>
       <EditorialGallery photos={photos} captions={photoCaptions} />
       <section className={styles.closing}>
-        <h2>{photographyContent.closing.title}</h2>
+        <h2 className="font-heading">{photographyContent.closing.title}</h2>
         <p>{photographyContent.closing.description}</p>
       </section>
     </main>

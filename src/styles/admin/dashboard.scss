@@ -1,28 +1,27 @@
+@use "../mixins" as mixins;
 @use "./sidebar";
 
 .admin-layout {
-  display: flex;
+  @include mixins.flex-container();
   min-height: 100vh;
-  background: #f8f5f1;
-  color: #012022;
+  background: var(--color-admin-background);
+  color: var(--color-admin-ink);
 }
 
 .admin-main {
-  flex: 1;
+  @include mixins.flex-item();
   min-width: 0;
 }
 
 .admin-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  @include mixins.flex-container($align: center, $justify: space-between);
   padding: 1.5rem 2.5rem;
-  background: white;
-  border-bottom: 1px solid #e8e2dc;
+  background: var(--color-white);
+  border-bottom: 0.0625rem solid var(--color-border);
 
   button {
     padding: 0.6rem 1rem;
-    border: 1px solid #ddd;
+    border: 0.0625rem solid var(--color-neutral-border);
     background: transparent;
     cursor: pointer;
   }
@@ -34,8 +33,7 @@
   &__heading {
   
     h1 {
-      font-family: Georgia, serif;
-      font-size: 2rem;
+      font-size: var(--font-size-heading-xl);
       margin-bottom: 0.5rem;
     }
 
@@ -51,15 +49,12 @@
   gap: 1.5rem;
 
   article {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+    @include mixins.flex-container($direction: column, $gap: 1rem);
     padding: 2rem;
-    background: white;
-    border: 1px solid #e8e2dc;
+    @include mixins.surface();
 
     strong {
-      font-size: 2rem;
+      font-size: var(--font-size-heading-xl);
     }
   }
 }

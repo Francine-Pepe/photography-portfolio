@@ -1,20 +1,22 @@
+@use "../../styles/mixins" as mixins;
+
 .frame {
   position: relative;
   overflow: hidden;
   width: 100%;
   aspect-ratio: 4 / 3;
-  background-color: var(--color-dusty-rose);
+  background-color: transparent;
 }
 
 .strip {
-  display: flex;
+  @include mixins.flex-container();
   width: calc(100% * var(--photo-count) * 2);
   height: 100%;
 }
 
 .slide {
   position: relative;
-  flex: 0 0 calc(100% / (var(--photo-count) * 2));
+  @include mixins.flex-item(0, 0, calc(100% / (var(--photo-count) * 2)));
   height: 100%;
   overflow: hidden;
 }

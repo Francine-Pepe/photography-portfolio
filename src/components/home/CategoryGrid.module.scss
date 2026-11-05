@@ -1,3 +1,5 @@
+@use "../../styles/mixins" as mixins;
+
 .section {
   padding: 0 5% 5rem;
 }
@@ -36,27 +38,24 @@
 }
 
 .caption {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 0.75rem;
+  @include mixins.flex-container($align: baseline, $justify: space-between, $gap: 0.75rem);
   padding-top: 0.65rem;
 
   .category_label {
     margin: 0;
     font-size: clamp(1rem, 1.5vw, 1.35rem);
     line-height: 1.2;
-    font-weight: 400;
+    font-weight: var(--font-weight-regular);
   }
 }
 
 .caption span {
   color: var(--color-olive);
-  font-size: 0.65rem;
+  font-size: var(--font-size-xxs);
   letter-spacing: 0.08em;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 37.5rem) {
   .section {
     padding-inline: 4%;
   }
@@ -67,7 +66,7 @@
   }
 
   .caption h2 {
-    font-size: 1.2rem;
+    font-size: var(--font-size-heading-sm);
   }
 }
 

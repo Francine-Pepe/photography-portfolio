@@ -1,18 +1,16 @@
+@use "../mixins" as mixins;
+
 .gallery-details {
   padding: 2rem;
   margin: 2rem 0;
-  background: white;
-  border: 1px solid #e8e2dc;
+  @include mixins.surface();
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: start;
+    @include mixins.flex-container($align: start, $justify: space-between);
     margin-bottom: 2rem;
 
     h2 {
-      font-family: Georgia, serif;
-      font-size: 1.4rem;
+      font-size: var(--font-size-heading-md);
     }
   }
 
@@ -24,52 +22,50 @@
 
   dt {
     margin-bottom: 0.5rem;
-    color: #777;
-    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
   }
 
   dd {
     margin: 0;
-    font-weight: 500;
+    font-weight: var(--font-weight-medium);
   }
 
   &__status {
     padding: 0.4rem 0.8rem;
     border-radius: 2rem;
-    font-size: 0.8rem;
+    font-size: var(--font-size-md);
 
     &--active {
-      background: #e3f3e9;
-      color: #267344;
+      background: var(--color-success-background);
+      color: var(--color-success);
     }
 
     &--expired {
-      background: #fff0dc;
-      color: #996016;
+      background: var(--color-warning-background);
+      color: var(--color-warning);
     }
 
     &--inactive {
-      background: #eee;
-      color: #666;
+      background: var(--color-neutral-light);
+      color: var(--color-neutral-medium);
     }
   }
 
   &__photos {
     padding: 2rem;
-    background: white;
-    border: 1px solid #e8e2dc;
+    @include mixins.surface();
 
     h2 {
       margin-bottom: 1rem;
-      font-family: Georgia, serif;
-      font-size: 1.4rem;
+      font-size: var(--font-size-heading-md);
     }
   }
 
   &__back {
     display: inline-block;
     margin-bottom: 2rem;
-    color: #267c74;
+    color: var(--color-admin-accent-strong);
     text-decoration: none;
 
     &:hover {
@@ -80,9 +76,9 @@
 
 .gallery-list {
   &__client-link {
-    color: #267c74;
+    color: var(--color-admin-accent-strong);
     text-decoration: none;
-    font-weight: 600;
+    font-weight: var(--font-weight-semibold);
 
     &:hover {
       text-decoration: underline;
@@ -116,10 +112,7 @@
 }
 
 .photo-grid__info {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 1rem;
+  @include mixins.flex-container($align: center, $justify: space-between, $gap: 1rem);
   margin-top: 0.75rem;
 
   span {
@@ -129,38 +122,33 @@
   }
 
   a {
-    flex-shrink: 0;
+    @include mixins.flex-no-shrink;
   }
 }
 
 .gallery-link {
   padding: 2rem;
   margin-bottom: 2rem;
-  background: white;
-  border: 1px solid #e8e2dc;
+  @include mixins.surface();
 
   &__header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    @include mixins.flex-container($align: center, $justify: space-between, $gap: 1rem);
     margin-bottom: 1.5rem;
 
     h3 {
-      font-family: Georgia, serif;
       font-size: 1.3rem;
     }
 
     button {
       padding: 0.75rem 1.25rem;
-      background: #267c74;
-      color: white;
+      background: var(--color-admin-accent-strong);
+      color: var(--color-white);
       border: none;
       cursor: pointer;
       transition: background 0.2s ease;
 
       &:hover {
-        background: #1d625c;
+        background: var(--color-admin-accent-hover);
       }
 
       &:disabled {
@@ -171,73 +159,70 @@
   }
 
   &__result {
-    display: flex;
-    gap: 0.75rem;
+    @include mixins.flex-container($gap: 0.75rem);
 
     input {
-      flex: 1;
+      @include mixins.flex-item();
       min-width: 0;
       padding: 0.75rem;
-      border: 1px solid #e8e2dc;
-      background: #faf9f7;
-      color: #444;
-      font-size: 0.9rem;
+      border: 0.0625rem solid var(--color-border);
+      background: var(--color-surface-subtle);
+      color: var(--color-neutral-strong);
+      font-size: var(--font-size-xl);
     }
 
     button {
       padding: 0.75rem 1.25rem;
-      background: #eee8e1;
-      color: #333;
-      border: 1px solid #e8e2dc;
+      background: var(--color-client-surface-dark);
+      color: var(--color-neutral-dark);
+      border: 0.0625rem solid var(--color-border);
       cursor: pointer;
 
       &:hover {
-        background: #e3dbd2;
+        background: var(--color-client-hover);
       }
     }
   }
 
   &__message {
     margin-top: 1rem;
-    color: #267344;
-    font-size: 0.9rem;
+    color: var(--color-success);
+    font-size: var(--font-size-xl);
   }
 
   &__notice {
     margin-top: 1rem;
-    color: #777;
-    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    font-size: var(--font-size-lg);
     line-height: 1.5;
   }
 }
 
 .gallery-details {
   &__actions {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
+    @include mixins.flex-container($align: center, $gap: 1rem);
   }
 }
 
 .gallery-status-action {
   button {
     padding: 0.5rem 1rem;
-    border: 1px solid #e8e2dc;
-    background: white;
-    color: #996016;
-    font-size: 0.85rem;
+    border: 0.0625rem solid var(--color-border);
+    background: var(--color-white);
+    color: var(--color-warning);
+    font-size: var(--font-size-lg);
     cursor: pointer;
     transition: all 0.2s ease;
 
     &:hover {
-      background: #fff0dc;
+      background: var(--color-warning-background);
     }
 
     &.is-inactive {
-      color: #267344;
+      color: var(--color-success);
 
       &:hover {
-        background: #e3f3e9;
+        background: var(--color-success-background);
       }
     }
 
@@ -249,24 +234,24 @@
 
   p {
     margin-top: 0.5rem;
-    color: #b42318;
-    font-size: 0.85rem;
+    color: var(--color-error);
+    font-size: var(--font-size-lg);
   }
 }
 
 .delete-gallery {
   button {
     padding: 0.5rem 1rem;
-    border: 1px solid #dc3545;
-    background: white;
-    color: #dc3545;
-    font-size: 0.85rem;
+    border: 0.0625rem solid var(--color-danger);
+    background: var(--color-white);
+    color: var(--color-danger);
+    font-size: var(--font-size-lg);
     cursor: pointer;
     transition: all 0.2s ease;
 
     &:hover {
-      background: #dc3545;
-      color: white;
+      background: var(--color-danger);
+      color: var(--color-white);
     }
 
     &:disabled {
@@ -277,16 +262,15 @@
 
   p {
     margin-top: 0.5rem;
-    color: #b42318;
-    font-size: 0.85rem;
+    color: var(--color-error);
+    font-size: var(--font-size-lg);
   }
 }
 
 @media (max-width: 48rem) {
   .gallery-details {
     &__actions {
-      align-items: flex-start;
-      flex-direction: column;
+      @include mixins.flex-container($direction: column, $align: flex-start, $gap: 1rem);
     }
   }
 }
@@ -296,12 +280,11 @@
     padding: 1.25rem;
 
     &__header {
-      align-items: flex-start;
-      flex-direction: column;
+      @include mixins.flex-container($direction: column, $align: flex-start, $gap: 1rem);
     }
 
     &__result {
-      flex-direction: column;
+      @include mixins.flex-container($direction: column, $gap: 0.75rem);
     }
   }
   .gallery-details {
@@ -314,13 +297,13 @@
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 48rem) {
   .photo-grid {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 30rem) {
   .photo-grid {
     grid-template-columns: 1fr;
   }

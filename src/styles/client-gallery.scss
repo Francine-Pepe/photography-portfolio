@@ -1,8 +1,10 @@
+@use "./mixins" as mixins;
+
 .client-gallery {
   min-height: 100vh;
   padding: 5rem 5%;
-  background: #f8f6f1;
-  color: #25231f;
+  background: var(--color-client-paper);
+  color: var(--color-client-ink);
 
   &__header {
     max-width: 50rem;
@@ -11,24 +13,23 @@
 
     > span {
       display: inline-block;
-      font-size: 0.75rem;
+      font-size: var(--font-size-sm);
       letter-spacing: 0.2em;
       text-transform: uppercase;
-      color: #8a8277;
+      color: var(--color-client-muted);
     }
 
     h1 {
       margin: 1.5rem 0 0.75rem;
-      font-family: Georgia, serif;
       font-size: clamp(2.5rem, 5vw, 4rem);
-      font-weight: 400;
+      font-weight: var(--font-weight-regular);
       line-height: 1.15;
     }
 
     p {
       margin: 0;
-      color: #8a8277;
-      font-size: 0.95rem;
+      color: var(--color-client-muted);
+      font-size: var(--font-size-2xl);
       letter-spacing: 0.04em;
     }
 
@@ -36,9 +37,9 @@
       content: "";
       display: block;
       width: 3rem;
-      height: 1px;
+      height: 0.0625rem;
       margin: 2rem auto 0;
-      background: #c9bca9;
+      background: var(--color-client-rule);
     }
   }
 
@@ -59,7 +60,7 @@
     > a {
       display: block;
       overflow: hidden;
-      background: #eee9e0;
+      background: var(--color-client-surface);
     }
 
     img {
@@ -76,54 +77,50 @@
   }
 
   &__photo-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
+    @include mixins.flex-container($align: center, $justify: space-between, $gap: 1rem);
     padding: 0.85rem 0 0;
 
     span {
       overflow: hidden;
       text-overflow: ellipsis;
       white-space: nowrap;
-      color: #777067;
-      font-size: 0.8rem;
+      color: var(--color-client-secondary);
+      font-size: var(--font-size-md);
     }
 
     a {
-      flex-shrink: 0;
-      color: #5c655c;
-      font-size: 0.8rem;
+      @include mixins.flex-no-shrink;
+      color: var(--color-client-olive);
+      font-size: var(--font-size-md);
       text-decoration: none;
-      border-bottom: 1px solid #b9b9a9;
+      border-bottom: 0.0625rem solid var(--color-client-olive-border);
       transition: color 0.2s ease;
 
       &:hover {
-        color: #a16e50;
+        color: var(--color-client-accent);
       }
     }
   }
 
   &__download-all {
-    display: flex;
-    justify-content: center;
+    @include mixins.flex-container($justify: center);
     margin: 0 auto 4rem;
 
     a {
       display: inline-block;
       padding: 0.9rem 2rem;
-      border: 1px solid #b9ad9c;
-      color: #49443d;
-      font-size: 0.8rem;
+      border: 0.0625rem solid var(--color-client-border-dark);
+      color: var(--color-client-text);
+      font-size: var(--font-size-md);
       letter-spacing: 0.08em;
       text-decoration: none;
       text-transform: uppercase;
       transition: all 0.25s ease;
 
       &:hover {
-        background: #252f2b;
-        border-color: #252f2b;
-        color: #fff;
+        background: var(--color-client-button);
+        border-color: var(--color-client-button);
+        color: var(--color-white);
       }
     }
   }
@@ -131,11 +128,11 @@
   &__footer {
     margin-top: 6rem;
     padding-top: 2rem;
-    border-top: 1px solid #e4dfd6;
+    border-top: 0.0625rem solid var(--color-client-border);
     text-align: center;
-    font-size: 0.75rem;
+    font-size: var(--font-size-sm);
     letter-spacing: 0.08em;
-    color: #999185;
+    color: var(--color-client-footer);
   }
 }
 

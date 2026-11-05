@@ -1,20 +1,20 @@
+@use "../mixins" as mixins;
+
 .photo-uploader {
   margin-top: 2rem;
 
   &__dropzone {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include mixins.flex-container($align: center, $justify: center);
     min-height: 15rem;
     padding: 2rem;
-    border: 2px dashed #c9c1b9;
+    border: 0.125rem dashed var(--color-admin-dropzone-border);
     text-align: center;
-    background: #faf9f7;
+    background: var(--color-surface-subtle);
     transition: background 0.2s ease;
 
     &.is-dragging {
-      background: #e9f4f1;
-      border-color: #267c74;
+      background: var(--color-admin-dropzone);
+      border-color: var(--color-admin-accent-strong);
     }
 
     h3 {
@@ -27,16 +27,16 @@
 
     span {
       display: block;
-      color: #777;
-      font-size: 0.8rem;
+      color: var(--color-text-muted);
+      font-size: var(--font-size-md);
     }
 
     button {
       margin-top: 1.5rem;
       padding: 0.75rem 1.5rem;
       border: 0;
-      background: #012022;
-      color: white;
+      background: var(--color-admin-ink);
+      color: var(--color-white);
       cursor: pointer;
 
       &:disabled {
@@ -55,27 +55,25 @@
   }
 
   &__file {
-    display: flex;
-    justify-content: space-between;
-    gap: 1rem;
+    @include mixins.flex-container($justify: space-between, $gap: 1rem);
     padding: 1rem 0;
-    border-bottom: 1px solid #e8e2dc;
-    font-size: 0.9rem;
+    border-bottom: 0.0625rem solid var(--color-border);
+    font-size: var(--font-size-xl);
   }
 
   &__status {
-    font-size: 0.85rem;
+    font-size: var(--font-size-lg);
 
     &--success {
-      color: #267344;
+      color: var(--color-success);
     }
 
     &--error {
-      color: #bd4545;
+      color: var(--color-danger-muted);
     }
 
     &--uploading {
-      color: #996016;
+      color: var(--color-warning);
     }
   }
 }

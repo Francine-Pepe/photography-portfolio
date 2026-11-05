@@ -1,0 +1,67 @@
+@mixin flex-container(
+  $direction: row,
+  $align: null,
+  $justify: null,
+  $wrap: null,
+  $gap: null,
+  $inline: false
+) {
+  @if $inline {
+    display: inline-flex;
+  } @else {
+    display: flex;
+  }
+
+  @if $direction != row {
+    flex-direction: $direction;
+  }
+
+  @if $align != null {
+    align-items: $align;
+  }
+
+  @if $justify != null {
+    justify-content: $justify;
+  }
+
+  @if $wrap != null {
+    flex-wrap: $wrap;
+  }
+
+  @if $gap != null {
+    gap: $gap;
+  }
+}
+
+@mixin flex-item($grow: 1, $shrink: 1, $basis: 0%) {
+  flex: $grow $shrink $basis;
+}
+
+@mixin flex-no-shrink {
+  flex-shrink: 0;
+}
+
+@mixin flex-gap($gap) {
+  gap: $gap;
+}
+
+@mixin flex-align-self($alignment) {
+  align-self: $alignment;
+}
+
+@mixin focus-ring(
+  $width: 0.125rem,
+  $offset: 0.1875rem,
+  $color: var(--color-burgundy)
+) {
+  outline: $width solid $color;
+  outline-offset: $offset;
+}
+
+@mixin surface(
+  $background: var(--color-white),
+  $border-color: var(--color-border)
+) {
+  background: $background;
+  border: 0.0625rem solid $border-color;
+}
