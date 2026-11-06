@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.scss";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Analytics } from "@vercel/analytics/next";
 
 const headingFont = Cormorant_Garamond({
   variable: "--font-heading",
@@ -35,6 +36,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       <body className={`${alta.variable} `}>
         <Header />
         {children}
+        <Analytics />
         <Footer />
       </body>
     </html>
