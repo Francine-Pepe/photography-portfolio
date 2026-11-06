@@ -1,26 +1,32 @@
 import type { Metadata } from "next";
-import { Cormorant_Garamond, DM_Sans } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.scss";
+
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+
 import { Analytics } from "@vercel/analytics/next";
-
-const headingFont = Cormorant_Garamond({
-  variable: "--font-heading",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const bodyFont = DM_Sans({
-  variable: "--font-body",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-});
 
 const alta = localFont({
   src: "./fonts/Alta_Regular.woff2",
   variable: "--font-alta",
+  display: "swap",
+});
+
+const cormorant = localFont({
+  src: [
+    {
+      path: "./fonts/CormorantGaramond-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/CormorantGaramond-Medium.ttf",
+      weight: "500",
+      style: "normal",
+    },
+  ],
+  variable: "--font-cormorant",
   display: "swap",
 });
 
@@ -32,12 +38,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${headingFont.variable} ${bodyFont.variable}`}>
-      <body className={`${alta.variable} `}>
+    <html lang="en">
+      <body className={`${alta.variable} ${cormorant.variable}`}>
         <Header />
         {children}
-        <Analytics />
         <Footer />
+        <Analytics />
       </body>
     </html>
   );
