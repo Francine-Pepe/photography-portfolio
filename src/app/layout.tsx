@@ -6,6 +6,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 
 import { Analytics } from "@vercel/analytics/next";
+import CookieBanner from "@/components/layout/CookieBanner/CookieBanner";
 
 const alta = localFont({
   src: "./fonts/Alta_Regular.woff2",
@@ -44,6 +45,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {children}
         <Footer />
         <Analytics />
+        <CookieBanner />
       </body>
     </html>
   );
